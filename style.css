@@ -1,0 +1,27 @@
+.hero {
+  height: 100vh;
+  background: url('../img/hero.jpg') center/cover no-repeat;
+  position: relative;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: rgba(0,0,0,0.4);
+}
+.hero .container { position: relative; z-index: 1; }
+
+section { scroll-margin-top: 70px; }
+
+ul.list-unstyled li {
+  position: relative; padding-left: 1.5rem; margin-bottom: .75rem;
+}
+ul li::before {
+  content: '✔'; color: #28a745;
+  position: absolute; left: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+@media (max-width: 767px) {
+  .hero h1 { font-size: 2rem; }
+  .hero p.lead { font-size: 1rem; }
+}
