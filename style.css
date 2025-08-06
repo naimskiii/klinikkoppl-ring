@@ -1,27 +1,135 @@
+/* === FARGEPALET === */
+:root {
+  --primary-color: #236D82;
+  --text-color: #ffffff;
+  --background-color: #f9f9f9;
+  --accent-color: #1b5464;
+  --font-family: 'Segoe UI', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  line-height: 1.6;
+  background-color: var(--background-color);
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+/* === HEADER === */
 .hero {
-  height: 100vh;
-  background: url('../img/hero.jpg') center/cover no-repeat;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
   position: relative;
 }
-.hero::before {
-  content: ''; position: absolute; inset: 0;
-  background: rgba(0,0,0,0.4);
-}
-.hero .container { position: relative; z-index: 1; }
 
-section { scroll-margin-top: 70px; }
-
-ul.list-unstyled li {
-  position: relative; padding-left: 1.5rem; margin-bottom: .75rem;
-}
-ul li::before {
-  content: '✔'; color: #28a745;
-  position: absolute; left: 0;
+.hero img {
+  height: 60px;
 }
 
-html { scroll-behavior: smooth; }
+nav {
+  display: flex;
+  gap: 1.5rem;
+}
 
-@media (max-width: 767px) {
-  .hero h1 { font-size: 2rem; }
-  .hero p.lead { font-size: 1rem; }
+nav a {
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+nav a:hover {
+  opacity: 0.8;
+}
+
+/* === BURGER-MENY === */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 6px;
+}
+
+.menu-toggle span {
+  height: 3px;
+  width: 25px;
+  background: var(--text-color);
+  border-radius: 2px;
+}
+
+/* === SEKSJONER === */
+.intro, .about, .innhold {
+  padding: 3rem 2rem;
+  max-width: 900px;
+  margin: auto;
+  background: #fff;
+  border-radius: 8px;
+  margin-top: 2rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.intro h1 {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.about h2,
+.innhold h2 {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+ul {
+  margin-top: 1rem;
+  padding-left: 1.2rem;
+}
+
+ul li {
+  margin-bottom: 0.5rem;
+  list-style-type: disc;
+}
+
+/* === FOOTER === */
+footer {
+  text-align: center;
+  padding: 2rem;
+  background: var(--primary-color);
+  color: var(--text-color);
+  margin-top: 3rem;
+}
+
+/* === RESPONSIV DESIGN === */
+@media (max-width: 768px) {
+  nav {
+    display: none;
+    flex-direction: column;
+    background-color: var(--primary-color);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+  }
+
+  nav.show {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
 }
