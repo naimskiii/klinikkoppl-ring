@@ -11,7 +11,7 @@
 <body>
 
   <header class="hero">
-    <img src="img/logo.png" alt="Klinikkopplæring logo">
+    <img src="img/logo.png" alt="logo">
     <nav>
       <a href="index.html">Hjem</a>
       <a href="kontakt.html">Kontakt oss</a>
@@ -20,10 +20,11 @@
      <div class="menu-toggle" onclick="toggleMenu()">
     <span></span>
     <span></span>
-    <span></span>
+    
   </div>
   </header>
 
+ 
   <div class="intro">
     <img src="img/bilde.jpeg" alt="">
     <h1>Slipp å lære opp hver ny assistent – få alt samlet i én digital opplæringspakke</h1>
@@ -34,7 +35,7 @@ Klinikkopplæring er en digital opplæringspakke laget spesielt for tannklinikke
     </p>
 </div>
 
-
+     <div class="container">
     <div class="about">
       <h2>Om oss</h2>
       <p>
@@ -56,6 +57,7 @@ Klinikkopplæring er en digital opplæringspakke laget spesielt for tannklinikke
             <li>Språklig enkelt og visuelt forklart</li>
             <li>Tilgang 24/7 – når som helst, hvor som helst</li>
         </div>
+        </div>
   
 
   <footer>
@@ -64,9 +66,9 @@ Klinikkopplæring er en digital opplæringspakke laget spesielt for tannklinikke
 
   <script>
   function toggleMenu() {
-    const nav = document.querySelector("nav");
-    nav.classList.toggle("show");
-  }
+  const nav = document.querySelector("header.hero nav");
+  nav.classList.toggle("show");
+}
 </script>
 
 </body>

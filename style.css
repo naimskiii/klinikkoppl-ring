@@ -24,22 +24,26 @@ body {
 
 /* === HEADER === */
 header.hero {
-    height: 120px; /* Bigger logo */
-  padding: 1rem 2rem;
   background: var(--primary-color);
   color: var(--text-color);
+  padding: 0.8rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
 }
 
 header.hero img {
-  height: 60px;
+  height: 100px;
+  width: auto;
 }
 
 /* NAVIGATION */
 nav {
   display: flex;
   gap: 1.5rem;
-  flex-wrap: wrap;
-  justify-content: center;
+  justify-content: right;
 }
 
 nav a {
@@ -53,6 +57,7 @@ nav a:hover {
   color: var(--highlight-color);
 }
 
+
 /* BURGER MENU */
 .menu-toggle {
   display: none;
@@ -65,6 +70,18 @@ nav a:hover {
   height: 3px;
   background: var(--text-color);
   margin: 4px 0;
+}
+
+/* Toggle nav on mobile */
+nav.show {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--primary-color);
+  width: 200px;
+  padding: 1rem;
 }
 
 /* === INTRO SECTION === */
@@ -92,7 +109,7 @@ nav a:hover {
   color: var(--text-color);
   font-size: 2.5rem;
   text-align: center;
-  /* removed background + padding + border */
+  font-family: ;
 }
 
 
@@ -102,6 +119,8 @@ nav a:hover {
   padding: 0 1rem;
   font-size: 1.1rem;
 }
+
+
 
 /* === SECTIONS === */
 .about, .innhold {
@@ -130,22 +149,6 @@ ul li {
   list-style-type: disc;
 }
 
-/* CTA BUTTON */
-.cta-btn {
-  display: inline-block;
-  background: var(--highlight-color);
-  color: #333;
-  padding: 0.7rem 1.5rem;
-  border-radius: 5px;
-  font-weight: bold;
-  margin-top: 1rem;
-  text-decoration: none;
-  transition: 0.3s ease;
-}
-
-.cta-btn:hover {
-  background: #ffc107;
-}
 
 /* === ANIMATIONS === */
 .fade-in {
@@ -159,15 +162,6 @@ ul li {
   transform: translateY(0);
 }
 
-/* === FOOTER === */
-footer {
-  text-align: center;
-  padding: 2rem;
-  background: var(--primary-color);
-  color: var(--text-color);
-  margin-top: 3rem;
-  font-size: 0.9rem;
-}
 
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
@@ -193,5 +187,163 @@ footer {
   .intro h1 {
     font-size: 1.5rem;
     padding: 0.8rem 1.2rem;
+  }
+}
+
+
+
+/* KONTAKT-SIDE*/
+/* === COLOR PALETTE === */
+:root {
+  --primary-color: #236D82;
+  --text-color: #ffffff;
+  --background-color: #f9f9f9;
+  --accent-color: #1b5464;
+  --highlight-color: #ffdd57;
+  --font-family: 'Segoe UI', sans-serif;
+}
+
+/* === RESET === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  line-height: 1.6;
+  background-color: var(--background-color);
+  color: #333;
+}
+
+/* === HEADER === */
+header.hero {
+  background: var(--primary-color);
+  color: var(--text-color);
+  padding: 0.8rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  position: relative;
+}
+
+header.hero img {
+  height: 100px;
+  width: auto;
+}
+
+/* NAVIGATION */
+nav {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+nav a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--highlight-color);
+}
+
+/* BURGER MENU */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background: var(--text-color);
+  margin: 4px 0;
+}
+
+/* Toggle nav on mobile */
+nav.show {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--primary-color);
+  width: 200px;
+  padding: 1rem;
+}
+
+/* === KONTAKT-SEKSJON === */
+.kontakt {
+  max-width: 700px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.kontakt h1 {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.kontakt p {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.email-link {
+  display: inline-block;
+  background: var(--accent-color);
+  color: var(--text-color);
+  padding: 0.7rem 1.5rem;
+  border-radius: 5px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.email-link:hover {
+  background: var(--primary-color);
+}
+
+/* === FOOTER === */
+footer {
+  text-align: center;
+  padding: 2rem;
+  background: var(--primary-color);
+  color: var(--text-color);
+  font-size: 0.9rem;
+  margin-top: 200px;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  nav {
+    display: none; /* hidden until burger clicked */
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  header.hero img {
+    height: 80px;
+  }
+
+  .kontakt {
+    margin: 2rem 1rem;
+    padding: 1.5rem;
   }
 }
