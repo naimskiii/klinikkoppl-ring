@@ -1,12 +1,14 @@
-/* === FARGEPALET === */
+/* === COLOR PALETTE === */
 :root {
   --primary-color: #236D82;
   --text-color: #ffffff;
   --background-color: #f9f9f9;
   --accent-color: #1b5464;
+  --highlight-color: #ffdd57;
   --font-family: 'Segoe UI', sans-serif;
 }
 
+/* === RESET === */
 * {
   margin: 0;
   padding: 0;
@@ -20,71 +22,95 @@ body {
   color: #333;
 }
 
-a {
-  text-decoration: none;
-  color: var(--text-color);
-}
-
 /* === HEADER === */
-.hero {
-  background-color: var(--primary-color);
-  color: var(--text-color);
+header.hero {
+    height: 120px; /* Bigger logo */
   padding: 1rem 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  position: relative;
+  background: var(--primary-color);
+  color: var(--text-color);
 }
 
-.hero img {
+header.hero img {
   height: 60px;
 }
 
+/* NAVIGATION */
 nav {
   display: flex;
   gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 nav a {
+  color: var(--text-color);
+  text-decoration: none;
   font-weight: 500;
-  transition: opacity 0.2s;
+  transition: 0.3s ease;
 }
 
 nav a:hover {
-  opacity: 0.8;
+  color: var(--highlight-color);
 }
 
-/* === BURGER-MENY === */
+/* BURGER MENU */
 .menu-toggle {
   display: none;
   flex-direction: column;
   cursor: pointer;
-  gap: 6px;
 }
 
 .menu-toggle span {
-  height: 3px;
   width: 25px;
+  height: 3px;
   background: var(--text-color);
-  border-radius: 2px;
+  margin: 4px 0;
 }
 
-/* === SEKSJONER === */
-.intro, .about, .innhold {
+/* === INTRO SECTION === */
+.intro {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.intro img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+
+/* === INTRO SECTION === */
+.intro h1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--text-color);
+  font-size: 2.5rem;
+  text-align: center;
+  /* removed background + padding + border */
+}
+
+
+.intro p {
+  max-width: 900px;
+  margin: 2rem auto 0;
+  padding: 0 1rem;
+  font-size: 1.1rem;
+}
+
+/* === SECTIONS === */
+.about, .innhold {
   padding: 3rem 2rem;
   max-width: 900px;
-  margin: auto;
+  margin: 2rem auto;
   background: #fff;
   border-radius: 8px;
-  margin-top: 2rem;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-}
-
-.intro h1 {
-  font-size: 2rem;
-  color: var(--primary-color);
-  margin-bottom: 1rem;
 }
 
 .about h2,
@@ -104,6 +130,35 @@ ul li {
   list-style-type: disc;
 }
 
+/* CTA BUTTON */
+.cta-btn {
+  display: inline-block;
+  background: var(--highlight-color);
+  color: #333;
+  padding: 0.7rem 1.5rem;
+  border-radius: 5px;
+  font-weight: bold;
+  margin-top: 1rem;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.cta-btn:hover {
+  background: #ffc107;
+}
+
+/* === ANIMATIONS === */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* === FOOTER === */
 footer {
   text-align: center;
@@ -111,18 +166,20 @@ footer {
   background: var(--primary-color);
   color: var(--text-color);
   margin-top: 3rem;
+  font-size: 0.9rem;
 }
 
-/* === RESPONSIV DESIGN === */
+/* === RESPONSIVE === */
 @media (max-width: 768px) {
   nav {
     display: none;
     flex-direction: column;
-    background-color: var(--primary-color);
+    background: var(--primary-color);
     position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
+    top: 65px;
+    right: 0;
+    width: 200px;
+    padding: 1rem;
   }
 
   nav.show {
@@ -131,5 +188,10 @@ footer {
 
   .menu-toggle {
     display: flex;
+  }
+
+  .intro h1 {
+    font-size: 1.5rem;
+    padding: 0.8rem 1.2rem;
   }
 }
