@@ -1,75 +1,114 @@
-
 <!DOCTYPE html>
 <html lang="no">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Klinikkopplæring</title>
-  
-    <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+  
   <header class="hero">
-    <img src="img/logo.png" alt="logo">
+    <img src="img/logo.png" alt="Klinikkopplæring logo" class="logo">
     <nav>
       <a href="index.html">Hjem</a>
       <a href="kontakt.html">Kontakt oss</a>
-    </nav>
-
-     <div class="menu-toggle" onclick="toggleMenu()">
-    <span></span>
-    <span></span>
-    
-  </div>
   </header>
-
- 
-  <div class="intro">
-    <img src="img/bilde.jpeg" alt="">
-    <h1>Slipp å lære opp hver ny assistent – få alt samlet i én digital opplæringspakke</h1>
-    <p>
-Å bruke tid på å forklare hygienerutiner og assistentoppgaver gang på gang?
-Vi har gjort jobben for deg.
-Klinikkopplæring er en digital opplæringspakke laget spesielt for tannklinikker – slik at nyansatte kommer raskere i gang og tannlegen får bruke tiden på pasientene.
-    </p>
-</div>
-
-     <div class="container">
-    <div class="about">
-      <h2>Om oss</h2>
-      <p>
-        Jeg er utdannet tannpleier og lærer med erfaring fra både klinikk og opplæring.<br><br>
-        Etter å ha sett hvor mye tid som går til å forklare det samme igjen og igjen, laget jeg en digital løsning som kan brukes av alle klinikker.<br><br>
-        Målet er å gjøre hverdagen lettere for både tannleger, eiere og assistenter.
-      </p>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
 
-    <div class="innhold">
+    <div class="wrapper">
+    <section class="intro">
+      <img src="img/bilde.jpeg" alt="vanlig bilde">
+      <h1>Slipp å lære opp hver ny assistent – vi har laget løsningen for deg</h1>
+      <p>Digital opplæringspakke for tannklinikker. Rask, enkel og klar til bruk.</p>
+    </section>
+  </div>
 
-        <h2>Hva innholder pakken?</h2>
+  <!-- 2. Problemet -->
+  <section class="problem">
+    <img src="img/problem.jpg" alt="Tannlege forklarer til usikker assistent">
+    <h2>Problemet</h2>
+    <ul>
+      <li>Nyansatte trenger mye opplæring</li>
+      <li>Tannleger må gjenta det samme igjen og igjen</li>
+      <li>Det stjeler tid fra pasientene</li>
+    </ul>
+    <p><strong>👉 Vi har gjort jobben for deg.</strong></p>
+  </section>
 
-        <ul>
-          <li>Grunnleggende hygienerutiner</li>
+  <!-- 3. Hva får du? -->
+  <section class="pakke">
+    <h2>Hva får du?</h2>
+    <ul>
+      <li>✅ <strong>Modul 1:</strong> Hygiene & smittevern</li>
+      <li>✅ <strong>Modul 2:</strong> Klargjøring av behandlingsrom</li>
+      <li>✅ <strong>Modul 3:</strong> Trygg assistanse i stolen</li>
+      <li>✅ <strong>Bonus:</strong> Sjekklister for vedlikehold</li>
+      <li>✅ Tilgang 24/7 – hvor som helst, når som helst</li>
+    </ul>
+  </section>
 
-        <li>Forståelse for smittevern og assistanse</li>
-            <li>Behandlingsrom: klargjøring, opprydding og støtte</li>
-            <li>Språklig enkelt og visuelt forklart</li>
-            <li>Tilgang 24/7 – når som helst, hvor som helst</li>
-        </div>
-        </div>
-  
+  <!-- 4. Hvordan funker det -->
+  <section class="how">
+    <h2>Hvordan funker det?</h2>
+    <ol>
+      <li>Bestill tilgang (på e-post med en gang)</li>
+      <li>Se modulene (10–15 min hver)</li>
+      <li>Bruk sjekklistene i klinikken</li>
+    </ol>
+    <p><strong>👉 Ferdig opplæring på én dag.</strong></p>
+  </section>
 
+  <!-- 5. Hvorfor klinikker elsker dette -->
+  <section class="why">
+    <h2>Hvorfor klinikker elsker dette</h2>
+    <ul>
+      <li>⏱️ <strong>Spar tid</strong> → tannlegen kan behandle flere pasienter</li>
+      <li>🙌 <strong>Trygghet</strong> → assistenter vet hva de skal gjøre</li>
+      <li>📈 <strong>Kvalitet</strong> → samme standard for hele klinikken</li>
+      <li>💸 <strong>Rimelig</strong> → én pakke, mange ansatte</li>
+    </ul>
+  </section>
+
+  <!-- 6. Pris -->
+  <section class="pris" id="pris">
+    <h2>Pilotkampanje</h2>
+    <p><strong>Pilotpris nå:</strong> 🎯 3 999 kr (engangsbeløp)<br>
+    Ord. pris 4 990 kr</p>
+    <p><strong>👉 Kjøp i dag og få full tilgang i 12 mnd.</strong></p>
+    <a href="https://klinikkopplaering.teachable.com/l/pdp/detail" class="cta-button">Bestill pilotpakken</a>
+  </section>
+
+  <!-- 7. Om meg -->
+  <section class="about">
+    <h2>Om meg</h2>
+    <p>
+      Jeg er utdannet tannpleier og lærer med erfaring fra både klinikk og opplæring.<br><br>
+      Jeg har sett hvor mye tid som går bort til å forklare de samme tingene igjen og igjen. 
+      Derfor laget jeg en digital løsning som sparer tid, gir trygghet og kvalitet, 
+      for både tannleger, eiere og assistenter.
+    </p>
+  </section>
+
+  <!-- 8. FAQ -->
+  <section class="faq">
+    <h2>FAQ</h2>
+    <ul>
+      <li><strong>Hvor lenge varer tilgangen?</strong> → 12 mnd</li>
+      <li><strong>Må jeg installere noe?</strong> → Nei, alt er digitalt</li>
+      <li><strong>Passer det små klinikker?</strong> → Ja, laget for alle størrelser</li>
+    </ul>
+  </section>
+
+  <!-- 9. Footer -->
   <footer>
-    &copy; 2025 Klinikkopplæring
+    <p> ©2025 Klinikkopplæring.no</p>
   </footer>
-
-  <script>
-  function toggleMenu() {
-  const nav = document.querySelector("header.hero nav");
-  nav.classList.toggle("show");
-}
-</script>
 
 </body>
 </html>
