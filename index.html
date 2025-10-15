@@ -1,37 +1,43 @@
 <!DOCTYPE html>
 <html lang="no">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Klinikkopplæring</title>
-  <link rel="stylesheet" href="style.css">
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playfair+Display:wght@600;900&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-
-  
-  <header class="hero">
-    <img src="img/logo.png" alt="Klinikkopplæring logo" class="logo">
+  <!-- Header -->
+  <section class="header">
     <nav>
-      <a href="index.html">Hjem</a>
-      <a href="kontakt.html">Kontakt oss</a>
-  </header>
-    <div class="menu-toggle" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
+      <a href="index.html"><img src="img/logo.png" alt="Logo" /></a>
+      <div class="nav-links" id="navLinks">
+        <i class="fa-solid fa-xmark" onclick="hideMenu()"></i>
+        <ul>
+          <li><a href="index.html">Hjem</a></li>
+          <li><a href="kontakt.html">Kontakt oss</a></li>
+        </ul>
+      </div>
+      <i class="fa-solid fa-bars" onclick="showMenu()"></i>
+    </nav>
 
-    <div class="wrapper">
-    <section class="intro">
-      <img src="img/bilde.jpeg" alt="vanlig bilde">
-      <h1>Slipp å lære opp hver ny assistent – vi har laget løsningen for deg</h1>
+    <div class="text-box">
+      <h1>Slipp å lære opp hver ny assistent</h1>
       <p>Digital opplæringspakke for tannklinikker. Rask, enkel og klar til bruk.</p>
-    </section>
-  </div>
+      <a href="#" class="hero-btn">Se mer</a>
+    </div>
+  </section>
 
-  <!-- 2. Problemet -->
+  <!-- Problemet -->
   <section class="problem">
-    <img src="img/problem.jpg" alt="Tannlege forklarer til usikker assistent">
+    <img src="img/problem.jpg" alt="Problem" />
     <h2>Problemet</h2>
     <ul>
       <li>Nyansatte trenger mye opplæring</li>
@@ -41,61 +47,72 @@
     <p><strong>👉 Vi har gjort jobben for deg.</strong></p>
   </section>
 
-  <!-- 3. Hva får du? -->
-  <section class="pakke">
-    <h2>Hva får du?</h2>
-    <ul>
-      <li>✅ <strong>Modul 1:</strong> Hygiene & smittevern</li>
-      <li>✅ <strong>Modul 2:</strong> Klargjøring av behandlingsrom</li>
-      <li>✅ <strong>Modul 3:</strong> Trygg assistanse i stolen</li>
-      <li>✅ <strong>Bonus:</strong> Sjekklister for vedlikehold</li>
-      <li>✅ Tilgang 24/7 – hvor som helst, når som helst</li>
-    </ul>
+  <!-- Hva får du -->
+  <section class="courses">
+    <h1>Hva får du?</h1>
+    <div class="row">
+      <div class="courses-col">
+        <h3>Modul 1</h3>
+        <p>Hygiene & smittevern</p>
+      </div>
+      <div class="courses-col">
+        <h3>Modul 2</h3>
+        <p>Klargjøring av behandlingsrom</p>
+      </div>
+      <div class="courses-col">
+        <h3>Modul 3</h3>
+        <p>Trygg assistanse i stolen</p>
+      </div>
+    </div>
   </section>
 
-  <!-- 4. Hvordan funker det -->
-  <section class="how">
-    <h2>Hvordan funker det?</h2>
-    <ol>
-      <li>Bestill tilgang (på e-post med en gang)</li>
-      <li>Se modulene (10–15 min hver)</li>
-      <li>Bruk sjekklistene i klinikken</li>
-    </ol>
+  <!-- Hvordan funker det -->
+  <section class="campus">
+    <h1>Hvordan funker det?</h1>
+    <div class="campus-steps">
+      <div class="campus-col">
+        <div class="layer"><h3>Bestill tilgang (på e-post med en gang)</h3></div>
+      </div>
+      <div class="campus-col">
+        <div class="layer"><h3>Se modulene (10–15 min hver)</h3></div>
+      </div>
+      <div class="campus-col">
+        <div class="layer"><h3>Bruk sjekklistene i klinikken</h3></div>
+      </div>
+    </div>
     <p><strong>👉 Ferdig opplæring på én dag.</strong></p>
   </section>
 
-  <!-- 5. Hvorfor klinikker elsker dette -->
-  <section class="why">
-    <h2>Hvorfor klinikker elsker dette</h2>
-    <ul>
-      <li>⏱️ <strong>Spar tid</strong> → tannlegen kan behandle flere pasienter</li>
-      <li>🙌 <strong>Trygghet</strong> → assistenter vet hva de skal gjøre</li>
-      <li>📈 <strong>Kvalitet</strong> → samme standard for hele klinikken</li>
-      <li>💸 <strong>Rimelig</strong> → én pakke, mange ansatte</li>
-    </ul>
+  <!-- Hvorfor -->
+  <section class="facilities">
+    <h1>Hvorfor klinikker elsker dette</h1>
+    <div class="row">
+      <div class="facilities-col"><h3>⏱️ Spar tid</h3><p>Tannlegen kan behandle flere pasienter</p></div>
+      <div class="facilities-col"><h3>🙌 Trygghet</h3><p>Assistentene vet hva de skal gjøre</p></div>
+      <div class="facilities-col"><h3>📈 Kvalitet</h3><p>Samme standard for hele klinikken</p></div>
+      <div class="facilities-col"><h3>💸 Rimelig</h3><p>Én pakke, mange ansatte</p></div>
+    </div>
   </section>
 
-  <!-- 6. Pris -->
-  <section class="pris" id="pris">
-    <h2>Pilotkampanje</h2>
-    <p><strong>Pilotpris nå:</strong> 🎯 3 999 kr (engangsbeløp)<br>
-    Ord. pris 4 990 kr</p>
+  <!-- Pilotkampanje -->
+  <section class="courses">
+    <h1>Pilotkampanje</h1>
+    <p><strong>Pilotpris nå:</strong> 🎯 3 999 kr (engangsbeløp)<br>Ord. pris 4 990 kr</p>
     <p><strong>👉 Kjøp i dag og få full tilgang i 12 mnd.</strong></p>
-    <a href="https://klinikkopplaering.teachable.com/l/pdp/detail" class="cta-button">Bestill pilotpakken</a>
+    <a href="https://klinikkopplaering.teachable.com/l/pdp/detail" class="hero-btn">Bestill pilotpakken</a>
   </section>
 
-  <!-- 7. Om meg -->
+  <!-- Om meg -->
   <section class="about">
     <h2>Om meg</h2>
     <p>
       Jeg er utdannet tannpleier og lærer med erfaring fra både klinikk og opplæring.<br><br>
-      Jeg har sett hvor mye tid som går bort til å forklare de samme tingene igjen og igjen. 
-      Derfor laget jeg en digital løsning som sparer tid, gir trygghet og kvalitet, 
-      for både tannleger, eiere og assistenter.
+      Jeg har sett hvor mye tid som går bort til å forklare de samme tingene igjen og igjen.
+      Derfor laget jeg en digital løsning som sparer tid, gir trygghet og kvalitet.
     </p>
   </section>
 
-  <!-- 8. FAQ -->
+  <!-- FAQ -->
   <section class="faq">
     <h2>FAQ</h2>
     <ul>
@@ -105,10 +122,22 @@
     </ul>
   </section>
 
-  <!-- 9. Footer -->
+  <!-- CTA -->
+  <section class="cta">
+    <h1>Pilotkampanje<br>Når som helst, hvor som helst</h1>
+    <a href="https://klinikkopplaering.teachable.com/l/pdp/detail" class="hero">Kontakt oss</a>
+  </section>
+
+  <!-- Footer -->
   <footer>
-    <p> ©2025 Klinikkopplæring.no</p>
+    <p>©2025 Klinikkopplæring.no</p>
   </footer>
 
+  <!-- Menu Script -->
+  <script>
+    const navLinks = document.getElementById("navLinks");
+    function showMenu(){ navLinks.style.right = "0"; }
+    function hideMenu(){ navLinks.style.right = "-200px"; }
+  </script>
 </body>
 </html>

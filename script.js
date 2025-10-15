@@ -8,10 +8,4 @@ document.addEventListener('DOMContentLoaded', () => {
   faders.forEach(el => observer.observe(el));
 });
 
-// Toggle burger menu på mobil
-function toggleMenu() {
-  const nav = document.querySelector("header.hero nav");
-  nav.classList.toggle("show");
-}
-
 
