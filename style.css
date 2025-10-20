@@ -100,6 +100,12 @@ nav img {
 .nav-links ul li a:hover {
   color: var(--primary);
 }
+/* Hindre scrolling når meny er åpen */
+body.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+
 
 .text-box {
   width: 90%;
@@ -618,4 +624,56 @@ h3 {
 .kontakt:hover {
   box-shadow: 0 10px 25px rgba(52, 209, 182, 0.2);
   transform: translateY(-5px);
+}
+
+
+
+/* ===============================
+   FIX: HINDRE SIDEVEIS SCROLL PÅ MOBIL
+================================*/
+html, body {
+  width: 100%;
+  overflow-x: hidden !important;
+  position: relative;
+}
+
+/* Hindrer at flex-rader eller bilder stikker ut */
+.row, .rekke, section {
+  overflow-x: hidden;
+}
+
+/* Fiks for mobilmeny som stikker ut */
+@media (max-width: 700px) {
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100vh;
+    background: var(--primary);
+    transition: right 0.5s ease;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .nav-links ul {
+    padding: 0;
+    text-align: center;
+  }
+
+  .nav-links ul li {
+    margin: 15px 0;
+  }
+
+  nav .fa-solid {
+    z-index: 1000;
+  }
+
+  body.no-scroll {
+    overflow: hidden;
+    height: 100vh;
+  }
 }
