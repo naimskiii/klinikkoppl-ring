@@ -1,38 +1,62 @@
 <!DOCTYPE html>
 <html lang="no">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kontakt oss – Klinikkopplæring</title>
-  <link rel="stylesheet" href="style.css">
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playfair+Display:wght@600;900&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-
-  <header class="hero">
-    <img src="img/logo.png" alt="Klinikkopplæring logo">
-
+  <!-- Header -->
+  <section class="header kontakt-header">
     <nav>
-      <a href="index.html">Hjem</a>
-      <a href="kontakt.html">Kontakt oss</a>
+      <a href="index.html"><img src="img/logo.png" alt="Logo" /></a>
+      <div class="nav-links" id="navLinks">
+        <i class="fa-solid fa-xmark" onclick="hideMenu()"></i>
+        <ul>
+          <li><a href="index.html">Hjem</a></li>
+          <li><a href="kontakt.html" class="active">Kontakt oss</a></li>
+        </ul>
+      </div>
+      <i class="fa-solid fa-bars" onclick="showMenu()"></i>
     </nav>
 
-    <div class="menu-toggle" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
+    <div class="text-box">
+      <h1>Kontakt oss</h1>
+      <p>Har du spørsmål eller ønsker samarbeid <br>
+      Send oss en melding — vi svarer raskt!</p>
     </div>
-  </header>
+  </section>
 
-  <div class="kontakt">
-    <h1>Kontakt oss</h1>
-    <p>Du kan kontakte oss direkte på e-post:</p>
-    <a href="mailto:post@klinikkopplaering.no" class="email-link">post@klinikkopplæring.no</a>
-  </div>
+  <!-- Kontakt -->
+  <section class="kontakt">
+    <div class="kontakt-container">
+      <div class="kontakt-info">
+        <h2>Ta kontakt</h2>
+        <p><i class="fa-solid fa-envelope"></i> post@klinikkopplæring.no</p>
+        <p><i class="fa-solid fa-location-dot"></i> Oslo, Norge</p>
+      </div>
+</div>
+  </section>
+      
 
-  <footer>
-    &copy; 2025 Klinikkopplæring
+  <!-- Footer -->
+  <footer class="footer">
+    <p>©2025 Klinikkopplæring.no</p>
   </footer>
 
-  <script src="script.js"></script>
+  <!-- Script -->
+  <script>
+    const navLinks = document.getElementById("navLinks");
+    function showMenu(){ navLinks.style.right = "0"; }
+    function hideMenu(){ navLinks.style.right = "-200px"; }
+  </script>
 </body>
 </html>
