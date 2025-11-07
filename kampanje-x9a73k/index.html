@@ -26,23 +26,27 @@
     <h2 class="text-2xl font-semibold mb-3">Gratis PDF</h2>
     <p class="text-gray-600 mb-6">“5 ting toppklinikker gjør for trygg assistentopplæring.”</p>
 
-    <!-- FORM -->
-    <form
-      action="https://formspree.io/f/mzzknlya"
-      method="POST"
-      class="max-w-md mx-auto bg-gray-100 p-6 rounded-2xl shadow-md"
-    >
+    <form id="leadForm"
+          action="https://formspree.io/f/mzzknlya"
+          method="POST"
+          class="max-w-md mx-auto bg-gray-100 p-6 rounded-2xl shadow-md">
       <input type="text" name="navn" placeholder="Navn" required
              class="w-full mb-3 p-3 rounded-md border border-gray-300" />
       <input type="email" name="epost" placeholder="E-post" required
              class="w-full mb-4 p-3 rounded-md border border-gray-300" />
-      <!-- Etter innsending send brukeren direkte til PDF -->
-      <input type="hidden" name="_redirect"
-             value="https://klinikkopplæring.no/kampanje-x9a73k/5%20ting%20toppklinikker%20gjør%20for%20a%CC%8A%20fa%CC%8A%20nye%20assistenter%20trygge%20pa%CC%8A%20under%207%20dager..pdf" />
+
       <button type="submit"
-              class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-md font-medium">
+              class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-md font-medium transition">
         Last ned PDF
       </button>
+
+      <!-- suksess-melding (skjult til start) -->
+      <p id="successMsg" class="hidden mt-4 text-green-700 font-medium">
+        ✅ Takk! PDF lastes ned nå.
+      </p>
+      <p id="errorMsg" class="hidden mt-4 text-red-600 font-medium">
+        ❌ Noe gikk galt – prøv igjen.
+      </p>
     </form>
   </section>
 
@@ -66,7 +70,7 @@
   <section class="text-center py-20 px-6">
     <h2 class="text-3xl font-semibold mb-6">Klar for å se hvordan det fungerer?</h2>
     <a href="https://calendly.com/post-xn-klinikkopplring-7lb/30min" target="_blank"
-       class="inline-block bg-green-600 hover:bg-green-700 text-white text-lg font-medium py-4 px-8 rounded-md">
+       class="inline-block bg-green-600 hover:bg-green-700 text-white text-lg font-medium py-4 px-8 rounded-md transition">
       📅 Book 10-min demo
     </a>
   </section>
@@ -74,5 +78,46 @@
   <footer class="text-center py-8 text-sm text-gray-500">
     © 2025 Klinikkopplæring – Alle rettigheter reservert.
   </footer>
+
+  <!-- FORM-LOGIKK -->
+  <script>
+  document.getElementById('leadForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    const successMsg = document.getElementById('successMsg');
+    const errorMsg = document.getElementById('errorMsg');
+    successMsg.classList.add('hidden');
+    errorMsg.classList.add('hidden');
+
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        // vis takk-melding
+        successMsg.classList.remove('hidden');
+
+        // last ned PDF automatisk
+        const pdfLink = document.createElement('a');
+        pdfLink.href = 'https://klinikkopplæring.no/kampanje-x9a73k/5%20ting%20toppklinikker%20gjør%20for%20a%CC%8A%20fa%CC%8A%20nye%20assistenter%20trygge%20pa%CC%8A%20under%207%20dager..pdf';
+        pdfLink.download = '5 ting toppklinikker.pdf';
+        document.body.appendChild(pdfLink);
+        pdfLink.click();
+        pdfLink.remove();
+
+        form.reset();
+      } else {
+        errorMsg.classList.remove('hidden');
+      }
+    } catch (err) {
+      console.error(err);
+      errorMsg.classList.remove('hidden');
+    }
+  });
+  </script>
 </body>
 </html>
