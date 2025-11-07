@@ -16,7 +16,7 @@ Kontakt: egen side med bilde og kontaktinfo.
 
 Bygget med:
 HTML • CSS (responsivt med media queries) • Font Awesome for ikoner • Google Fonts (Playfair Display & Open Sans).
-Ingen rammeverk, ingen tull — bare ren kode.
+
 
 ## Mobilvennlig
 
