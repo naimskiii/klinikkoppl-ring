@@ -1,0 +1,3 @@
+Contact: mailto:posty@klinikkopplæring.no
+Preferred-Languages: no, en
+Policy: https://klinikkopplæring.no/security
