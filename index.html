@@ -3,243 +3,360 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Klinikkopplæring</title>
+  <title>Klinikkopplæring – TryggStart</title>
+  <meta name="description" content="Klinikkopplæring – TryggStart. Trygg og effektiv opplæring av nye ansatte i tannklinikker, laget av Laila, tannpleier og lærer." />
 
-  <!-- Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playfair+Display:wght@600;900&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
-   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Newsreader:ital@1&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <!-- Custom CSS -->
   <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-  <!-- Header -->
-  <section class="header">
-    <nav>
-      <a href="index.html"><img src="img/logo.png" alt="Logo" /></a>
-      <div class="nav-links" id="navLinks">
-        <i class="fa-solid fa-xmark" onclick="hideMenu()"></i>
-        <ul>
-          <li><a href="index.html">Hjem</a></li>
-          <li><a href="kontakt.html">Kontakt oss</a></li>
-        </ul>
+
+  <!-- ============ NAV ============ -->
+  <header class="topbar" id="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">
+        <img src="img/logo.png" alt="Klinikkopplæring" class="brand-logo" />
+      </a>
+
+      <div class="topbar-right">
+        <a class="topbar-cta" href="https://tryggstart.klinikkopplæring.no" target="_blank" rel="noopener">Se TryggStart</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Åpne meny" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
       </div>
-      <i class="fa-solid fa-bars" onclick="showMenu()"></i>
-    </nav>
 
-    <div class="text-box">
-      <h1>Klinikkopplæring – TryggStart</h1>
-      <p>av Laila, tannpleier og lærer</p>
-      <a href="#problem" class="text-box-knapp">Se mer</a>
+      <nav class="topnav" id="topnav">
+        <a href="#om-meg">Om</a>
+        <a href="#partnere">Priser</a>
+        <a href="#faq">FAQ</a>
+      </nav>
     </div>
-  </section>
+  </header>
 
-  <!-- Problemet -->
-  <!-- Problemet -->
-<section class="problem" id="problem">
-  <h1>Problemet</h1>
+  <main>
 
-  <div class="problem-points">
-    <div class="point">Nyansatte trenger mye opplæring</div>
-    <div class="point">Tannleger må gjenta det samme igjen og igjen</div>
-    <div class="point">Det stjeler tid fra pasientene</div>
-  </div>
-
-  <p><strong>👉 Vi har gjort jobben for deg.</strong></p>
-</section>
-
-
-  <!-- Hvordan funker det -->
-<section class="courses" id="courses">
-    <h1>Hvordan funker det</h1>
-    <div class="row">
-      <div class="courses-col">
-        <p>Bestill tilgang (på e-post med en gang)</p>
+    <!-- ============ HERO ============ -->
+    <header class="hero">
+      <div class="hero-decor" aria-hidden="true"></div>
+      <div class="hero-body content-wrap">
+        <h1>Kjære tannlege —<br>din kunnskap er for verdifull<br>til å bli gjentatt i det uendelige.</h1>
+        <p>Klinikkopplæring – TryggStart, av Laila, tannpleier og lærer</p>
+        <a href="#problem" class="btn btn-outline">Se mer</a>
       </div>
-      <div class="courses-col">
-        <p>Trygg og effektiv assistanse-på under en time</p>
+    </header>
+
+    <!-- ============ PROBLEMET ============ -->
+    <section class="problem" id="problem">
+      <div class="content-wrap">
+        <h2 class="section-title">Problemet</h2>
+
+        <div class="problem-points">
+          <div class="point reveal">
+            <span class="point-num">1</span>
+            <p>Nyansatte trenger mye opplæring.</p>
+          </div>
+          <div class="point reveal">
+            <span class="point-num">2</span>
+            <p>Tannleger må gjenta det samme igjen og igjen.</p>
+          </div>
+          <div class="point reveal">
+            <span class="point-num">3</span>
+            <p>Det stjeler tid fra pasientene.</p>
+          </div>
+        </div>
       </div>
-      <div class="courses-col">
-        <p>Bruk sjekklistene i klinikken</p>
+    </section>
+
+    <!-- ============ HVORDAN FUNKER DET ============ -->
+    <section class="courses">
+      <div class="content-wrap">
+        <h2 class="section-title section-title--light section-title--start">Hvordan funker det?</h2>
+
+        <div class="courses-row">
+          <div class="courses-col reveal">
+            <span class="circle-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18v13H3z"/><path d="m3 6 9 7 9-7"/></svg>
+            </span>
+            <p>Bestill tilgang på<br>e-post.</p>
+          </div>
+          <div class="courses-col reveal">
+            <span class="circle-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-8.9 8.4A9 9 0 0 1 8 19l-5 1 1-4.5A8.4 8.4 0 1 1 21 11.5Z"/><path d="M9 10.5h.01M12 10.5h.01M15 10.5h.01"/></svg>
+            </span>
+            <p>Trygg og effektiv<br>assistanse.</p>
+          </div>
+          <div class="courses-col reveal">
+            <span class="circle-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l2 2 4-4"/><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 2v4M16 2v4"/></svg>
+            </span>
+            <p>Bruk sjekklistene<br>på klinikken.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ HVA FÅR DU (moduler) ============ -->
+    <section class="campus" id="hva-far-du">
+      <div class="content-wrap">
+        <h2 class="section-title">Hva får du?</h2>
+
+        <div class="campus-row">
+          <article class="campus-col reveal">
+            <div class="campus-img">
+              <img src="img/mørkegrønn hygiene og smittevern.svg" alt="Illustrasjon: hender som vaskes" width="200" height="200" />
+            </div>
+            <p class="campus-label">Modul 1</p>
+          </article>
+
+          <article class="campus-col reveal">
+            <div class="campus-img">
+              <img src="img/mørkegrønn klargjøring av behandlingsrom.svg" alt="Illustrasjon: klargjøring av instrumenter" width="200" height="200" />
+            </div>
+            <p class="campus-label">Modul 2</p>
+          </article>
+
+          <article class="campus-col reveal">
+            <div class="campus-img">
+              <img src="img/mørkegrønn trygg assistanse i stolen.svg" alt="Illustrasjon: trygg assistanse i stolen" width="200" height="200" />
+            </div>
+            <p class="campus-label">Modul 3</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ HVORFOR KLINIKKER ELSKER DETTE ============ -->
+    <section class="facilities">
+      <div class="content-wrap">
+        <h2 class="section-title">Hvorfor klinikker elsker dette</h2>
+
+        <div class="facilities-row">
+          <div class="facilities-col reveal">
+            <span class="circle-icon circle-icon--sm" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+            </span>
+            <h3>Spar tid</h3>
+            <p>Tannlegen kan behandle flere pasienter.</p>
+          </div>
+          <div class="facilities-col reveal">
+            <span class="circle-icon circle-icon--sm" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12.5 11 15l4.5-5"/><path d="M12 3 4 6.5v5c0 5 3.4 8.9 8 10 4.6-1.1 8-5 8-10v-5L12 3Z"/></svg>
+            </span>
+            <h3>Trygghet</h3>
+            <p>Assistentene vet hva de skal gjøre.</p>
+          </div>
+          <div class="facilities-col reveal">
+            <span class="circle-icon circle-icon--sm" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M7 19v-6M12 19V7M17 19v-9"/></svg>
+            </span>
+            <h3>Kvalitet</h3>
+            <p>Samme standard for hele klinikken.</p>
+          </div>
+          <div class="facilities-col reveal">
+            <span class="circle-icon circle-icon--sm" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v1M12 16v1M9.2 9c0-1.2 1.2-2 2.8-2s2.8.7 2.8 1.8c0 2.4-4.6 1.8-4.6 4.5 0 1.1 1.1 1.9 2.8 1.9 1.4 0 2.5-.6 2.8-1.6"/></svg>
+            </span>
+            <h3>Rimelig</h3>
+            <p>Én pakke, mange ansatte.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ HVA SKJER ETTER JA ============ -->
+    <section class="steps-section">
+      <div class="steps-inner content-wrap">
+        <div class="steps-left reveal">
+          <h2 class="steps-heading">Klinikkopplæring —<br>hva som skjer etter du sier ja</h2>
+          <ol class="steps-list">
+            <li>Vi kartlegger dine preferanser og rutiner</li>
+            <li>AI-agenten lærer seg din klinikk</li>
+            <li>Nye ansatte og vikarer logger inn — ikke inn hos deg</li>
+            <li>Dokumentasjonen skjer automatisk</li>
+          </ol>
+        </div>
+        <div class="steps-right reveal">
+          <div class="contact-card">
+            <h3 class="contact-card-title">Usikker på hva du trenger?</h3>
+            <p class="contact-card-sub">Send oss en melding — så hører du fra oss innen én arbeidsdag.</p>
+            <div class="contact-card-inner">
+              <span class="contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>
+              </span>
+              <p class="contact-inner-title">Lurer du på noe?</p>
+              <p class="contact-inner-text">Fortell oss gjerne om klinikken din, så tar vi kontakt.</p>
+              <a href="mailto:post@klinikkopplaering.no" class="btn btn-dark">Send oss en e-post</a>
+              <p class="contact-email">post@klinikkopplaering.no</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PRISER ============ -->
+    <section class="pricing-section" id="partnere">
+      <div class="content-wrap">
+        <p class="pricing-label reveal">Pilotkampanje</p>
+        <h2 class="pricing-title reveal">Velg det som passer klinikken din</h2>
+
+        <div class="pricing-grid">
+          <div class="price-card reveal">
+            <div class="price-top">
+              <p class="price-name">Demo</p>
+            </div>
+            <div class="price-row">
+              <span class="price-amount">Gratis</span>
+            </div>
+            <p class="price-tagline">Prøv TryggStart uten forpliktelser.</p>
+            <div class="price-rule"></div>
+            <ul class="price-features">
+              <li><span class="price-ck">✓</span>Opptil 10 meldinger per dag</li>
+              <li><span class="price-ck">✓</span>Begrenset samtalehistorikk</li>
+              <li><span class="price-ck">✓</span>Grunnleggende AI-svar</li>
+            </ul>
+            <a class="price-btn" href="#">Velg Demo <span aria-hidden="true">→</span></a>
+          </div>
+
+          <div class="price-card reveal">
+            <div class="price-top">
+              <p class="price-name">Basic</p>
+            </div>
+            <div class="price-pills">
+              <span class="price-save">★ Du sparer 50 kr</span>
+              <span class="price-expire">● Utløper snart</span>
+            </div>
+            <div class="price-row">
+              <span class="price-amount">49<span class="price-unit">/ mnd</span></span>
+            </div>
+            <p class="price-strike">Ord. 99 kr</p>
+            <p class="price-tagline">For klinikker som vil komme i gang.</p>
+            <div class="price-rule"></div>
+            <ul class="price-features">
+              <li><span class="price-ck">✓</span>Ubegrenset meldinger</li>
+              <li><span class="price-ck">✓</span>Full samtalehistorikk</li>
+              <li><span class="price-ck">✓</span>Prioritert svartid</li>
+              <li><span class="price-ck">✓</span>E-poststøtte</li>
+            </ul>
+            <a class="price-btn" href="#">Velg Basic <span aria-hidden="true">→</span></a>
+          </div>
+
+          <div class="price-card price-card--pop reveal">
+            <span class="price-badge">★ Mest populær</span>
+            <div class="price-top">
+              <p class="price-name"><span class="price-spark" aria-hidden="true">✦</span> Pro</p>
+            </div>
+            <div class="price-pills">
+              <span class="price-save">★ Du sparer 200 kr</span>
+              <span class="price-expire">● Utløper snart</span>
+            </div>
+            <div class="price-row">
+              <span class="price-amount">199<span class="price-unit">/ mnd</span></span>
+            </div>
+            <p class="price-strike">Ord. 399 kr</p>
+            <p class="price-tagline">For klinikker som stiller høye krav.</p>
+            <div class="price-rule"></div>
+            <ul class="price-features">
+              <li><span class="price-ck">✓</span>Alt i Basic</li>
+              <li><span class="price-ck">✓</span>Avanserte opplæringsmoduler</li>
+              <li><span class="price-ck">✓</span>Tidlig tilgang til nye funksjoner</li>
+              <li><span class="price-ck">✓</span>Dedikert support</li>
+              <li><span class="price-ck">✓</span>Teamtilgang (inntil 5 brukere)</li>
+            </ul>
+            <a class="price-btn" href="#">Velg Pro <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+
+        <p class="pricing-foot reveal">🔒 Sikker betaling · Avslutt når som helst · GDPR-trygg</p>
+      </div>
+    </section>
+
+    <!-- ============ OM MEG ============ -->
+    <section class="about" id="om-meg">
+      <div class="content-wrap about-wrap reveal">
+        <h2 class="section-title section-title--light">Om meg</h2>
+        <p>
+          Hei, jeg heter Laila.<br><br>
+          Jeg er tannpleier og lærer, med lidenskap for strukturert og trygg opplæring i klinikkhverdagen.
+          Etter mange år i tannhelsefeltet, både i praksis og som underviser, vet jeg hvor mye tid og energi
+          som går med til å lære opp nye assistenter.<br><br>
+          Målet mitt er å gjøre opplæringen enklere, mer effektiv og mindre stressende.
+          Jeg ønsker å bidra til at tannleger og assistenter kan jobbe med bedre flyt og mer ro hver eneste dag.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="faq-section" id="faq">
+      <div class="content-wrap">
+        <div class="faq-card reveal">
+          <h2 class="section-title">Ofte stilte spørsmål</h2>
+
+          <div class="faq-list">
+            <div class="faq">
+              <button class="accordion">
+                Hvor lenge varer tilgangen?
+                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+              <div class="panel"><p>12 mnd.</p></div>
+            </div>
+
+            <div class="faq">
+              <button class="accordion">
+                Må jeg installere noe?
+                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+              <div class="panel"><p>Nei, alt foregår gjennom Teachable.</p></div>
+            </div>
+
+            <div class="faq">
+              <button class="accordion">
+                Passer det små klinikker?
+                <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+              <div class="panel"><p>Ja, laget for alle størrelser.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer" id="kontakt">
+    <p class="footer-logo">Klinikkopplæring</p>
+    <p class="footer-tagline">Den siste gangen du forklarte det samme — er allerede bak deg.</p>
+
+    <div class="footer-grid content-wrap">
+      <div class="footer-col">
+        <p class="footer-col-title">Kontakt</p>
+        <a href="mailto:post@klinikkopplaering.no">post@klinikkopplaering.no</a>
+        <span>klinikkopplaering.no</span>
+        <span>Oslo, Norge</span>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">Sosiale medier</p>
+        <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="#" target="_blank" rel="noopener">Instagram</a>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">Generelt</p>
+        <a href="#om-meg">Om</a>
+        <a href="#partnere">Priser</a>
+        <a href="#faq">FAQ</a>
+        <a href="#">Personvern</a>
       </div>
     </div>
-  </section>
 
-  
-
-  <!-- Hva får du -->
-<section class="campus">
-  <h1>Hva får du</h1>
-  <div class="rekke">
-    <div class="campus-col">
-      <img src="img/hygiene.jpg "alt="">
-      <div class="layer"><h3>Modul 1 – Hygiene og smittevern</h3></div>
+    <div class="footer-bottom content-wrap">
+      <p>GDPR-trygg · Norsk bokmål</p>
+      <p>© 2026 Klinikkopplæring – TryggStart. Laget av Laila.</p>
     </div>
-
-    <div class="campus-col">
-      <img src="img/behandlingsrom.jpg" alt="dentalsor.no">
-      <div class="layer"><h3>Modul 2 – Klargjøring av behandlingsrom</h3></div>
-    </div>
-
-    <div class="campus-col">
-      <img src="img/trygg.jpg">
-      <div class="layer"><h3>Modul 3 – Trygg assistanse i stolen</h3></div>
-    </div>
-  </div>
-
-  <p><strong>👉 Ferdig opplært på én dag.</strong></p>
-</section>
-
-
-
- 
-
-
-  <!-- Hvorfor -->
-  <section class="facilities">
-  <h1>Hvorfor klinikker elsker dette</h1>
-  <div class="row">
-
-    <div class="facilities-col">
-      <img src="img/spar-tid.jpg" alt="Spar tid">
-      <h3>⏱️ Spar tid</h3>
-      <p>Tannlegen kan behandle flere pasienter</p>
-    </div>
-
-    <div class="facilities-col">
-      <img src="img/trygghet.jpg" alt="Trygghet">
-      <h3>🙌 Trygghet</h3>
-      <p>Assistentene vet hva de skal gjøre</p>
-    </div>
-
-    <div class="facilities-col">
-      <img src="img/kvalitet.jpg" alt="Kvalitet">
-      <h3>📈 Kvalitet</h3>
-      <p>Samme standard for hele klinikken</p>
-    </div>
-
-    <div class="facilities-col">
-      <img src="img/rimelig.jpg" alt="Rimelig">
-      <h3>💸 Rimelig</h3>
-      <p>Én pakke, mange ansatte</p>
-    </div>
-
-  </div>
-</section>
-
-
-  <!-- Pilotkampanje -->
-  <section class="pilot">
-    <h1>Pilotkampanje</h1>
-    <p><strong>Pilotpris nå:</strong> 🎯 3 999 kr (engangsbeløp)<br>Ord. pris 4 990 kr</p>
-    <p><strong>👉 Kjøp i dag og få full tilgang i 12 mnd.</strong></p>
-    <a href="https://klinikkopplaering.teachable.com/l/pdp/detail" class="hero-btn">Kjøp pilotpakken nå!!</a>
-  </section>
-
-  <!-- Om meg -->
-  <section class="about">
-    <h2>Om meg</h2>
-    <p>
-     Hei, jeg heter Laila. <br>
-     Jeg er tannpleier og lærer, med lidenskap for strukturert og trygg opplæring i klinikkhverdagen.<br>
-Etter mange år i tannhelsefeltet, både i praksis og som underviser, vet jeg hvor mye tid og energi som går med til å lære opp nye assistenter. <br>
-Målet mitt er å gjøre opplæringen enklere, mer effektiv og mindre stressende. 
-<br>Jeg ønsker å bidra til at tannleger og assistenter kan jobbe med bedre flyt og mer ro hver eneste dag.
-    </p>
-  </section>
-
-  <!-- FAQ -->
- <div class="wrapper">
-    <h1>FAQ</h1>
-
-    <div class="faq">
-      <button class="accordion">
-        Hvor lenge varer tilgangen?
-        <i class="fa-solid fa-chevron-down"></i>
-      </button>
-      <div class="panel">
-        <p>12 mnd</p>
-      </div>
-    </div>
-
-    <div class="faq">
-      <button class="accordion">
-        Må jeg installere noe?
-        <i class="fa-solid fa-chevron-down"></i>
-      </button>
-      <div class="panel">
-        <p>Alt foregår gjennom Teachable</p>
-      </div>
-    </div>
-
-    <div class="faq">
-      <button class="accordion">
-        Passer det små klinikker?
-        <i class="fa-solid fa-chevron-down"></i>
-      </button>
-      <div class="panel">
-        <p>Ja, laget for alle størrelser</p>
-      </div>
-    </div>
-  </div>
-
-
-
-
-  <!-- CTA -->
-  <section class="cta">
-    <h1>Pilotkampanje<br>Når som helst, hvor som helst</h1>
-    <a href="https://xn--klinikkopplring-7lb.no/kontakt.html" class="hero">Kontakt oss</a>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-     <p>Klinikkopplæring – TryggStart<br>©2026</p>
   </footer>
 
-  <!-- Menu Script -->
-  <script>
-
-
-    
-  const navLinks = document.getElementById("navLinks");
-
-  function showMenu() {
-    navLinks.style.right = "0";
-    document.body.classList.add("no-scroll");
-  }
-
-  function hideMenu() {
-    navLinks.style.right = "-100%";
-    document.body.classList.remove("no-scroll");
-  }
-
-
-
-
-    // FAQ Accordion
-
-   const acc = document.getElementsByClassName("accordion");
-
-for (let i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function () {
-    this.classList.toggle("active");
-
-    const panel = this.nextElementSibling;
-    const icon = this.querySelector("i");
-
-    if (panel.style.display === "block") {
-      panel.style.display = "none";
-      icon.style.transform = "rotate(0deg)";
-    } else {
-      panel.style.display = "block";
-      icon.style.transform = "rotate(180deg)";
-    }
-  });
-}
-
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
