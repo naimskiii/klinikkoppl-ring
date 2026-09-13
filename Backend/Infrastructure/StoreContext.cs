@@ -1,3 +1,4 @@
+using Entity;
 using Microsoft.EntityFrameworkCore;
 namespace Infrastructure
 
@@ -9,6 +10,7 @@ namespace Infrastructure
         }
 
         public DbSet<Course> Courses { get; set; }
+        public DbSet<Student> Students { get; set; }
     }
 
     public class Course
@@ -17,6 +19,14 @@ namespace Infrastructure
     public string Title { get; set; }
      public String Description{ get; set; }
     public String Image { get; set; }
+}
+
+public class Student
+{
+    public Guid Id { get; set; }
+    public string Name { get; set; }
+    public string AccessCode { get; set; }
+    
 }
     }
 

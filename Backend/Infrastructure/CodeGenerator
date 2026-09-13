@@ -1,0 +1,14 @@
+using System.Security.Cryptography;
+
+namespace Infrastructure;
+
+// Lager tilfeldige, ikke-gjettbare koder, f.eks. "KLINIKK-7F2A9B3C"
+public static class CodeGenerator
+{
+    public static string GenerateAccessCode(string prefix = "KLINIKK")
+    {
+        var bytes = RandomNumberGenerator.GetBytes(4);
+        var suffix = Convert.ToHexString(bytes);
+        return $"{prefix}-{suffix}";
+    }
+}

@@ -1,0 +1,58 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Infrastructure;
+using Infrastructure.Services;
+
+namespace API.Controllers;
+
+public class AuthController : BaseController
+{
+    private readonly StoreContext _context;
+
+    public AuthController(StoreContext context)
+    {
+        _context = context;
+    }
+
+    // Kalles av DEG (adminen) for å lage en ny student med en fersk kode
+    [HttpPost("create-student")]
+    public async Task<ActionResult> CreateStudent(CreateStudentRequest request)
+    {
+        var student = new Student
+        {
+            Name = request.Name,
+            AccessCode = CodeGenerator.GenerateAccessCode()
+        };
+
+        _context.Students.Add(student);
+        await _context.SaveChangesAsync();
+
+        // Returnerer koden slik at du kan kopiere den og gi til studenten
+        return Ok(new { student.Name, student.AccessCode });
+    }
+
+    // Kalles av STUDENTEN for å logge inn med koden de fikk
+    [HttpPost("login")]
+    public async Task<ActionResult> Login(LoginRequest request)
+    {
+        var student = await _context.Students
+            .FirstOrDefaultAsync(s => s.AccessCode == request.AccessCode);
+
+        if (student == null)
+        {
+            return Unauthorized(new { message = "Feil kode." });
+        }
+
+        return Ok(new { message = "Innlogget!", name = student.Name });
+    }
+}
+
+public class CreateStudentRequest
+{
+    public string Name { get; set; }
+}
+
+public class LoginRequest
+{
+    public string AccessCode { get; set; }
+}

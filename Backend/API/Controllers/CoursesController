@@ -13,7 +13,17 @@ public class CoursesController : BaseController
     [HttpGet]
     public async Task<ActionResult<List<Course>>> GetCourses()
     {
-        var courses = await _context.Courses.ToListAsync();
-        return Ok(courses);
+         return  await _context.Courses.ToListAsync();
+    
+    }
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Course>> GetCourse(Guid id)
+    {
+        var course = await _context.Courses.FindAsync(id);
+        if (course == null)
+        {
+            return NotFound();
+        }
+        return Ok(course);
     }
 }
