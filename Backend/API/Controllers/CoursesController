@@ -1,0 +1,19 @@
+namespace API.Controllers;
+using Infrastructure;
+
+public class CoursesController : BaseController
+{
+    private readonly StoreContext _context;
+
+    public CoursesController(StoreContext context)
+    {
+        _context = context;
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<List<Course>>> GetCourses()
+    {
+        var courses = await _context.Courses.ToListAsync();
+        return Ok(courses);
+    }
+}
