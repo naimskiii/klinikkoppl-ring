@@ -1,0 +1,12 @@
+C:\Users\naimz\GitHub\klinikkoppl-ring-\Backend\Module\bin\Debug\net10.0\Module.deps.json
+C:\Users\naimz\GitHub\klinikkoppl-ring-\Backend\Module\bin\Debug\net10.0\Module.dll
+C:\Users\naimz\GitHub\klinikkoppl-ring-\Backend\Module\bin\Debug\net10.0\Module.pdb
+C:\Users\naimz\GitHub\klinikkoppl-ring-\Backend\Module\obj\Debug\net10.0\Module.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\naimz\GitHub\klinikkoppl-ring-\Backend\Module\obj\Debug\net10.0\Module.AssemblyInfoInputs.cache
+C:\Users\naimz\GitHub\klinikkoppl-ring-\Backend\Module\obj\Debug\net10.0\Module.AssemblyInfo.cs
+C:\Users\naimz\GitHub\klinikkoppl-ring-\Backend\Module\obj\Debug\net10.0\Module.csproj.CoreCompileInputs.cache
+C:\Users\naimz\GitHub\klinikkoppl-ring-\Backend\Module\obj\Debug\net10.0\Module.sourcelink.json
+C:\Users\naimz\GitHub\klinikkoppl-ring-\Backend\Module\obj\Debug\net10.0\Module.dll
+C:\Users\naimz\GitHub\klinikkoppl-ring-\Backend\Module\obj\Debug\net10.0\refint\Module.dll
+C:\Users\naimz\GitHub\klinikkoppl-ring-\Backend\Module\obj\Debug\net10.0\Module.pdb
+C:\Users\naimz\GitHub\klinikkoppl-ring-\Backend\Module\obj\Debug\net10.0\ref\Module.dll
