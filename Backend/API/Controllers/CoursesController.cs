@@ -1,6 +1,7 @@
 namespace API.Controllers;
 using Infrastructure;
-
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 public class CoursesController : BaseController
 {
     private readonly StoreContext _context;

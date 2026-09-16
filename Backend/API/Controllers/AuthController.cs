@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Infrastructure;
-using Infrastructure.Services;
+using System.Security.Cryptography;
 
 namespace API.Controllers;
 
@@ -14,24 +14,21 @@ public class AuthController : BaseController
         _context = context;
     }
 
-    // Kalles av DEG (adminen) for å lage en ny student med en fersk kode
     [HttpPost("create-student")]
     public async Task<ActionResult> CreateStudent(CreateStudentRequest request)
     {
         var student = new Student
         {
             Name = request.Name,
-            AccessCode = CodeGenerator.GenerateAccessCode()
+            AccessCode = await GenerateUniqueAccessCode()
         };
 
         _context.Students.Add(student);
         await _context.SaveChangesAsync();
 
-        // Returnerer koden slik at du kan kopiere den og gi til studenten
         return Ok(new { student.Name, student.AccessCode });
     }
 
-    // Kalles av STUDENTEN for å logge inn med koden de fikk
     [HttpPost("login")]
     public async Task<ActionResult> Login(LoginRequest request)
     {
@@ -44,6 +41,35 @@ public class AuthController : BaseController
         }
 
         return Ok(new { message = "Innlogget!", name = student.Name });
+    }
+
+    // Tegnsettet utelater forvirrende tegn (0/O, 1/I/L) slik at studenter
+    // ikke mistolker koden når de skriver den av fra papir eller SMS.
+    private const string SafeChars = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
+
+    private static string GenerateAccessCode()
+    {
+        var buffer = new char[10];
+        for (int i = 0; i < buffer.Length; i++)
+        {
+            buffer[i] = SafeChars[RandomNumberGenerator.GetInt32(SafeChars.Length)];
+        }
+        return new string(buffer);
+    }
+
+    // Sjekker (i det usannsynlige tilfellet) at koden faktisk er unik i databasen
+    // før den tas i bruk, i stedet for å bare stole blindt på tilfeldigheten.
+    private async Task<string> GenerateUniqueAccessCode()
+    {
+        string code;
+        bool exists;
+        do
+        {
+            code = GenerateAccessCode();
+            exists = await _context.Students.AnyAsync(s => s.AccessCode == code);
+        } while (exists);
+
+        return code;
     }
 }
 
