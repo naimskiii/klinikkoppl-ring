@@ -30,6 +30,16 @@ public class Startup
 
         services.AddControllers()
             .AddApplicationPart(EntryAssembly);
+
+        // NYTT: åpner opp for at nettsider på en annen port/origin
+        // (f.eks. login.html på localhost:5500) får lov til å kalle dette API-et.
+        services.AddCors(options =>
+        {
+            options.AddPolicy("AllowAll", policy =>
+            {
+                policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+            });
+        });
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -40,6 +50,10 @@ public class Startup
         }
 
         app.UseRouting();
+
+        // NYTT: må stå her, EFTER UseRouting men FØR UseAuthorization/MapControllers
+        app.UseCors("AllowAll");
+
         app.UseAuthorization();
 
         app.UseEndpoints(endpoints =>
@@ -47,13 +61,11 @@ public class Startup
             endpoints.MapControllers();
             endpoints.MapGet("/ping", async context => await context.Response.WriteAsync("pong"));
             endpoints.MapGet("/routes", async context =>
-{
-    var dataSource = context.RequestServices.GetRequiredService<Microsoft.AspNetCore.Routing.EndpointDataSource>();
-    var names = dataSource.Endpoints.Select(e => e.DisplayName);
-    await context.Response.WriteAsync(string.Join("\n", names));
-});
+            {
+                var dataSource = context.RequestServices.GetRequiredService<Microsoft.AspNetCore.Routing.EndpointDataSource>();
+                var names = dataSource.Endpoints.Select(e => e.DisplayName);
+                await context.Response.WriteAsync(string.Join("\n", names));
+            });
         });
-
-        
     }
 }

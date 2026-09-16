@@ -2,108 +2,312 @@
 <html lang="no">
 <head>
   <meta charset="UTF-8" />
-  <title>Moduler – Klinikkopplæring</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Logg inn</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
+    :root {
+      --teal-dark: #0b383d;
+      --sage: #3b867f;
+      --sage-light: #62b89d;
+      --teal-pale: #7ecdc8;
+      --mint-pale: #bfe2d3;
+      --cream: #fcfee0;
+      --ink: #12211d;
+      --ink-soft: #4c5f59;
+      --font-heading: "Baloo 2", sans-serif;
+      --font-body: "Open Sans", sans-serif;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { box-sizing: border-box; }
+
     body {
-      font-family: system-ui, sans-serif;
-      background: #f7f5ef;
-      color: #12211d;
       margin: 0;
-      padding: 40px;
-    }
-    header {
+      min-height: 100vh;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      margin-bottom: 32px;
+      justify-content: center;
+      padding: 24px;
+      font-family: var(--font-body);
+      background: radial-gradient(120% 120% at 20% 0%, #eef3e4 0%, #dfe8d8 60%, #d4e0d1 100%);
+      color: var(--ink);
     }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 20px;
-    }
+
     .card {
       background: #fff;
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      border-radius: 24px;
+      padding: 44px 40px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 30px 60px rgba(11,56,61,0.12);
+      text-align: center;
     }
-    .card h3 { margin: 0 0 8px; color: #0b383d; }
-    .card p { margin: 0; color: #4c5f59; font-size: 14px; }
-    button#logout {
-      background: none;
-      border: 1px solid #0b383d;
-      border-radius: 8px;
-      padding: 8px 16px;
+
+    .logo {
+      width: 52px;
+      height: 52px;
+      margin: 0 auto 6px;
+      display: block;
+    }
+
+    .wordmark {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      color: var(--sage);
+      margin: 0 0 26px;
+    }
+
+    h1 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 24px;
+      color: var(--teal-dark);
+      margin: 0 0 8px;
+    }
+
+    .subtitle {
+      color: var(--ink-soft);
+      font-size: 14.5px;
+      margin: 0 0 28px;
+    }
+
+    /* rolle siden*/
+    .role-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .role-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      text-align: left;
+      background: #fff;
+      border: 1.5px solid var(--mint-pale);
+      border-radius: 14px;
+      padding: 16px 18px;
+      cursor: pointer;
+      transition: border-color 200ms var(--ease), transform 200ms var(--ease), box-shadow 200ms var(--ease);
+    }
+    .role-card:hover {
+      border-color: var(--sage-light);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(11,56,61,0.08);
+    }
+    .role-icon {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--mint-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .role-icon svg { width: 22px; height: 22px; color: var(--teal-dark); }
+    .role-title {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--ink);
+      margin: 0 0 3px;
+    }
+    .role-text {
+      font-size: 13px;
+      color: var(--ink-soft);
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    /*student kode*/
+    input[type="text"] {
+      width: 100%;
+      padding: 15px 18px;
+      border-radius: 999px;
+      border: 1.5px solid var(--mint-pale);
+      background: #fbfcf6;
+      font-size: 15px;
+      font-family: var(--font-body);
+      color: var(--ink);
+      text-align: center;
+      letter-spacing: 0.06em;
+      margin-bottom: 16px;
+      outline: none;
+      transition: border-color 200ms var(--ease);
+    }
+    input[type="text"]:focus { border-color: var(--sage-light); }
+    input[type="text"]::placeholder { color: #9aa89f; letter-spacing: normal; }
+
+    .btn-primary {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 999px;
+      background: var(--teal-dark);
+      color: var(--cream);
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background 200ms var(--ease), transform 200ms var(--ease);
+    }
+    .btn-primary:hover { background: var(--sage); transform: translateY(-1px); }
+    .btn-primary:disabled { opacity: 0.6; cursor: default; transform: none; }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 20px;
+      font-size: 13.5px;
+      color: var(--ink-soft);
+      text-decoration: none;
       cursor: pointer;
     }
-    #status { color: #c0533f; }
+    .back-link:hover { color: var(--teal-dark); }
+
+    #message {
+      margin-top: 14px;
+      font-size: 13.5px;
+      min-height: 18px;
+    }
+    #message.error { color: #c0533f; }
+    #message.success { color: var(--sage); }
+
+    .screen { display: none; }
+    .screen.active { display: block; }
   </style>
 </head>
 <body>
 
-  <header>
-    <div>
-      <h2 id="greeting">Moduler</h2>
-    </div>
-    <button id="logout" onclick="logout()">Logg ut</button>
-  </header>
+  <div class="card">
+    <img src="img/logo.png" alt="Klinikkopplæring" class="logo" />
+    <p class="wordmark">KLINIKKOPPLÆRING</p>
 
-  <p id="status"></p>
-  <div class="grid" id="courseGrid"></div>
+    <!-- ============ STEG 1: VELG ROLLE ============ -->
+    <div class="screen active" id="screen-role">
+      <h1>Velkommen til TryggStart</h1>
+      <p class="subtitle">Velg hvordan du vil logge inn</p>
+
+      <div class="role-list">
+        <div class="role-card" onclick="goToStudentLogin()">
+          <span class="role-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg>
+          </span>
+          <span>
+            <p class="role-title">Jeg er nyansatt / student</p>
+            <p class="role-text">Få svar på alt om oppstart, rutiner og systemer</p>
+          </span>
+        </div>
+
+        <div class="role-card" onclick="clinicComingSoon()">
+          <span class="role-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M6 21V7l6-4 6 4v14M9 9h1M9 13h1M14 9h1M14 13h1M10 21v-4h4v4"/></svg>
+          </span>
+          <span>
+            <p class="role-title">Jeg er klinikkansvarlig</p>
+            <p class="role-text">Administrer dokumenter og svar for klinikken din</p>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ STEG 2: STUDENTKODE ============ -->
+    <div class="screen" id="screen-student">
+      <h1>Logg inn som student</h1>
+      <p class="subtitle">Skriv inn studentkoden du fikk fra klinikken din</p>
+
+      <input type="text" id="accessCode" placeholder="f.eks. PA9EMJ3PZK" autocomplete="off" />
+      <button class="btn-primary" id="loginBtn" onclick="login()">Logg inn</button>
+      <p id="message"></p>
+
+      <a class="back-link" onclick="goToRoleScreen()">← Tilbake</a>
+    </div>
+  </div>
 
   <script>
     const API_BASE = "http://localhost:5033";
 
-    // Enkel beskyttelse: uten en lagret kode, send tilbake til login
-    const accessCode = localStorage.getItem("accessCode");
-    const studentName = localStorage.getItem("studentName");
-
-    if (!accessCode) {
-      window.location.href = "login.html";
-    } else {
-      document.getElementById("greeting").textContent = `Hei, ${studentName}! Her er modulene dine:`;
+    function showScreen(id) {
+      document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
     }
 
-    async function loadCourses() {
-      const statusEl = document.getElementById("status");
-      const grid = document.getElementById("courseGrid");
+    function goToStudentLogin() {
+      showScreen("screen-student");
+      document.getElementById("accessCode").focus();
+    }
+
+    function goToRoleScreen() {
+      showScreen("screen-role");
+      document.getElementById("message").textContent = "";
+      document.getElementById("message").className = "";
+    }
+
+    function clinicComingSoon() {
+      alert("Innlogging for klinikkansvarlig kommer snart!");
+    }
+
+    async function login() {
+      const code = document.getElementById("accessCode").value.trim();
+      const messageEl = document.getElementById("message");
+      const btn = document.getElementById("loginBtn");
+      messageEl.textContent = "";
+      messageEl.className = "";
+
+      if (!code) {
+        messageEl.textContent = "Skriv inn koden din først.";
+        messageEl.className = "error";
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = "Logger inn...";
 
       try {
-        const response = await fetch(`${API_BASE}/api/courses`);
+        const response = await fetch(`${API_BASE}/api/auth/login`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ accessCode: code })
+        });
 
         if (!response.ok) {
-          statusEl.textContent = `Fikk ikke hentet moduler (status ${response.status}).`;
+          messageEl.textContent = "Feil kode. Prøv igjen.";
+          messageEl.className = "error";
+          btn.disabled = false;
+          btn.textContent = "Logg inn";
           return;
         }
 
-        const courses = await response.json();
+        const data = await response.json();
+        localStorage.setItem("studentName", data.name);
+        localStorage.setItem("accessCode", code);
 
-        if (courses.length === 0) {
-          statusEl.textContent = "Ingen moduler er lagt inn ennå.";
-          return;
-        }
+        messageEl.textContent = `Innlogget som ${data.name}! Sender deg videre...`;
+        messageEl.className = "success";
 
-        grid.innerHTML = courses.map(course => `
-          <div class="card">
-            <h3>${course.title}</h3>
-            <p>${course.description ?? ""}</p>
-          </div>
-        `).join("");
+        setTimeout(() => {
+          window.location.href = "courses.html";
+        }, 700);
 
       } catch (err) {
-        statusEl.textContent = "Fikk ikke kontakt med serveren. Kjører den?";
+        messageEl.textContent = "Fikk ikke kontakt med serveren. Kjører den?";
+        messageEl.className = "error";
+        btn.disabled = false;
+        btn.textContent = "Logg inn";
         console.error(err);
       }
     }
 
-    function logout() {
-      localStorage.removeItem("accessCode");
-      localStorage.removeItem("studentName");
-      window.location.href = "login.html";
-    }
-
-    loadCourses();
+    document.getElementById("accessCode").addEventListener("keydown", (e) => {
+      if (e.key === "Enter") login();
+    });
   </script>
 </body>
 </html>

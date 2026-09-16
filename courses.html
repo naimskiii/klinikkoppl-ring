@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mine moduler – TryggStart</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --teal-dark: #0b383d;
+      --sage: #3b867f;
+      --sage-light: #62b89d;
+      --teal-pale: #7ecdc8;
+      --mint-pale: #bfe2d3;
+      --mint-bg: #e6f4ee;
+      --cream: #fcfee0;
+      --bg: #f7f5ef;
+      --ink: #12211d;
+      --ink-soft: #4c5f59;
+      --font-heading: "Baloo 2", sans-serif;
+      --font-body: "Open Sans", sans-serif;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--ink);
+    }
+
+    header {
+      background: var(--teal-dark);
+      padding: 20px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .brand img { width: 30px; height: 30px; }
+    .brand span {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: var(--cream);
+      font-size: 15px;
+      letter-spacing: 0.02em;
+    }
+    #logout {
+      background: none;
+      border: 1.5px solid rgba(252,254,224,0.4);
+      color: var(--cream);
+      padding: 9px 18px;
+      border-radius: 999px;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 13.5px;
+      cursor: pointer;
+      transition: background 200ms var(--ease), border-color 200ms var(--ease);
+    }
+    #logout:hover { background: rgba(252,254,224,0.1); border-color: var(--cream); }
+
+    .dashboard-head {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 44px 24px 8px;
+    }
+    .dashboard-head h1 {
+      font-family: var(--font-heading);
+      font-size: 26px;
+      color: var(--teal-dark);
+      margin: 0 0 6px;
+    }
+    .dashboard-head p {
+      color: var(--ink-soft);
+      font-size: 14.5px;
+      margin: 0;
+    }
+
+    .progress-summary {
+      max-width: 880px;
+      margin: 22px auto 0;
+      padding: 0 24px;
+      display: flex;
+      gap: 16px;
+    }
+    .stat {
+      background: #fff;
+      border-radius: 14px;
+      padding: 16px 22px;
+      flex: 1;
+      box-shadow: 0 4px 16px rgba(11,56,61,0.06);
+    }
+    .stat .num {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      color: var(--teal-dark);
+      font-weight: 700;
+    }
+    .stat .label {
+      font-size: 12.5px;
+      color: var(--ink-soft);
+    }
+
+    main {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 32px 24px 80px;
+    }
+
+    #status { color: #c0533f; font-size: 14px; }
+
+    .module {
+      background: #fff;
+      border-radius: 14px;
+      margin-bottom: 14px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(11,56,61,0.06);
+    }
+
+    .module-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 22px;
+      cursor: pointer;
+      background: #fff;
+      transition: background 150ms var(--ease);
+    }
+    .module-header:hover { background: var(--mint-bg); }
+
+    .module-header-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .chevron {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      color: var(--ink-soft);
+      margin-top: 3px;
+      transition: transform 220ms var(--ease);
+    }
+    .module.open .chevron { transform: rotate(90deg); }
+
+    .module-title-block .title {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 16.5px;
+      color: var(--teal-dark);
+      margin: 0 0 3px;
+    }
+    .module-title-block .desc {
+      font-size: 13px;
+      color: var(--ink-soft);
+      margin: 0;
+    }
+
+    .module-header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .status-pill {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 12.5px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: var(--mint-pale);
+      color: var(--teal-dark);
+      white-space: nowrap;
+    }
+    .module.completed .status-pill {
+      background: var(--sage-light);
+      color: #fff;
+    }
+
+    .check {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid var(--mint-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .check svg { width: 12px; height: 12px; opacity: 0; transition: opacity 200ms var(--ease); }
+    .module.completed .check {
+      background: var(--sage-light);
+      border-color: var(--sage-light);
+    }
+    .module.completed .check svg { opacity: 1; color: #fff; }
+
+    .module-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 320ms var(--ease);
+      border-top: 1px solid var(--mint-bg);
+    }
+    .module.open .module-body {
+      max-height: 2400px;
+    }
+    .module-body-inner { padding: 24px 22px 28px; }
+
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #000;
+      margin-bottom: 12px;
+    }
+    .video-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .video-label {
+      font-size: 12.5px;
+      color: var(--ink-soft);
+      margin: 0 0 22px;
+    }
+
+    .quiz {
+      background: var(--mint-bg);
+      border-radius: 12px;
+      padding: 20px 20px 22px;
+    }
+    .quiz h3 {
+      font-family: var(--font-heading);
+      font-size: 15px;
+      color: var(--teal-dark);
+      margin: 0 0 16px;
+    }
+    .question { margin-bottom: 18px; }
+    .question p.q-text {
+      font-weight: 600;
+      font-size: 14px;
+      margin: 0 0 10px;
+      color: var(--ink);
+    }
+    .options { display: flex; flex-direction: column; gap: 8px; }
+    .option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      border: 1.5px solid var(--mint-pale);
+      border-radius: 10px;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-size: 13.5px;
+      transition: border-color 150ms var(--ease);
+    }
+    .option:hover { border-color: var(--sage-light); }
+    .option input { accent-color: var(--sage); }
+    .option.correct { border-color: var(--sage-light); background: #eafaf3; }
+    .option.wrong { border-color: #c0533f; background: #fbeae6; }
+
+    .quiz-btn {
+      margin-top: 6px;
+      background: var(--teal-dark);
+      color: var(--cream);
+      border: none;
+      border-radius: 999px;
+      padding: 11px 24px;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 13.5px;
+      cursor: pointer;
+      transition: background 200ms var(--ease);
+    }
+    .quiz-btn:hover { background: var(--sage); }
+    .quiz-btn:disabled { opacity: 0.6; cursor: default; }
+
+    .quiz-result {
+      margin-top: 14px;
+      font-size: 13.5px;
+      font-weight: 600;
+    }
+    .quiz-result.pass { color: var(--sage); }
+    .quiz-result.fail { color: #c0533f; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <img src="img/logo.png" alt="" />
+      <span>KLINIKKOPPLÆRING</span>
+    </div>
+    <button id="logout" onclick="logout()">Logg ut</button>
+  </header>
+
+  <div class="dashboard-head">
+    <h1 id="greeting">Mine moduler</h1>
+    <p>Gå gjennom modulene i din tid, og fullfør quizen i hver for å låse opp neste steg.</p>
+  </div>
+
+  <div class="progress-summary" id="progressSummary"></div>
+
+  <main>
+    <p id="status"></p>
+    <div id="moduleList"></div>
+  </main>
+
+  <script>
+    const API_BASE = "http://localhost:5033";
+    const VIDEO_ID = "n6hPB3Arr_M"; // Plassholder-video, byttes ut med ekte innhold senere
+
+    // Enkel plassholder-quiz brukt for alle moduler inntil ekte quiz-data finnes i backend
+    const SAMPLE_QUIZ = [
+      {
+        question: "Hva er det viktigste å sjekke før du starter en behandling?",
+        options: ["At telefonen er ladet", "At utstyret er sterilisert og klart", "At musikken spiller"],
+        correctIndex: 1
+      },
+      {
+        question: "Hvor ofte bør rutinene gjennomgås?",
+        options: ["Aldri, de er faste", "Jevnlig, ved behov", "Kun første arbeidsdag"],
+        correctIndex: 1
+      }
+    ];
+
+    const accessCode = localStorage.getItem("accessCode");
+    const studentName = localStorage.getItem("studentName");
+
+    if (!accessCode) {
+      window.location.href = "login.html";
+    } else {
+      document.getElementById("greeting").textContent = `Hei, ${studentName}! Her er modulene dine`;
+    }
+
+    function logout() {
+      localStorage.removeItem("accessCode");
+      localStorage.removeItem("studentName");
+      window.location.href = "login.html";
+    }
+
+    function isModuleCompleted(courseId) {
+      return localStorage.getItem(`module-completed-${courseId}`) === "true";
+    }
+    function markModuleCompleted(courseId) {
+      localStorage.setItem(`module-completed-${courseId}`, "true");
+    }
+
+    function renderProgressSummary(courses) {
+      const total = courses.length;
+      const done = courses.filter(c => isModuleCompleted(c.id)).length;
+      const el = document.getElementById("progressSummary");
+      el.innerHTML = `
+        <div class="stat"><div class="num">${total}</div><div class="label">Moduler totalt</div></div>
+        <div class="stat"><div class="num">${done}</div><div class="label">Fullført</div></div>
+        <div class="stat"><div class="num">${total - done}</div><div class="label">Gjenstår</div></div>
+      `;
+    }
+
+    function toggleModule(id) {
+      document.getElementById(`module-${id}`).classList.toggle("open");
+    }
+
+    function renderQuiz(course) {
+      return `
+        <div class="quiz" id="quiz-${course.id}">
+          <h3>Sjekk forståelsen din</h3>
+          ${SAMPLE_QUIZ.map((q, qi) => `
+            <div class="question">
+              <p class="q-text">${qi + 1}. ${q.question}</p>
+              <div class="options">
+                ${q.options.map((opt, oi) => `
+                  <label class="option" data-course="${course.id}" data-q="${qi}" data-o="${oi}">
+                    <input type="radio" name="q-${course.id}-${qi}" value="${oi}" />
+                    ${opt}
+                  </label>
+                `).join("")}
+              </div>
+            </div>
+          `).join("")}
+          <button class="quiz-btn" onclick="submitQuiz('${course.id}')">Lever svar</button>
+          <p class="quiz-result" id="result-${course.id}"></p>
+        </div>
+      `;
+    }
+
+    function submitQuiz(courseId) {
+      let correctCount = 0;
+
+      SAMPLE_QUIZ.forEach((q, qi) => {
+        const selected = document.querySelector(`input[name="q-${courseId}-${qi}"]:checked`);
+        const labels = document.querySelectorAll(`.option[data-course="${courseId}"][data-q="${qi}"]`);
+
+        labels.forEach(label => {
+          const oi = parseInt(label.dataset.o);
+          label.classList.remove("correct", "wrong");
+          if (oi === q.correctIndex) label.classList.add("correct");
+          else if (selected && parseInt(selected.value) === oi) label.classList.add("wrong");
+        });
+
+        if (selected && parseInt(selected.value) === q.correctIndex) correctCount++;
+      });
+
+      const resultEl = document.getElementById(`result-${courseId}`);
+      const passed = correctCount === SAMPLE_QUIZ.length;
+
+      if (passed) {
+        resultEl.textContent = `Riktig! ${correctCount}/${SAMPLE_QUIZ.length} — modulen er fullført.`;
+        resultEl.className = "quiz-result pass";
+        markModuleCompleted(courseId);
+        document.getElementById(`module-${courseId}`).classList.add("completed");
+        document.querySelector(`#module-${courseId} .status-pill`).textContent = "Fullført";
+      } else {
+        resultEl.textContent = `${correctCount}/${SAMPLE_QUIZ.length} riktig — prøv igjen.`;
+        resultEl.className = "quiz-result fail";
+      }
+
+      renderProgressSummary(window.__courses);
+    }
+
+    function renderModules(courses) {
+      const list = document.getElementById("moduleList");
+      list.innerHTML = courses.map(course => {
+        const completed = isModuleCompleted(course.id);
+        return `
+          <div class="module ${completed ? "completed" : ""}" id="module-${course.id}">
+            <div class="module-header" onclick="toggleModule('${course.id}')">
+              <div class="module-header-left">
+                <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                <div class="module-title-block">
+                  <p class="title">${course.title}</p>
+                  <p class="desc">${course.description ?? ""}</p>
+                </div>
+              </div>
+              <div class="module-header-right">
+                <span class="status-pill">${completed ? "Fullført" : "Ikke fullført"}</span>
+                <span class="check" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                </span>
+              </div>
+            </div>
+            <div class="module-body">
+              <div class="module-body-inner">
+                <div class="video-wrap">
+                  <iframe src="https://www.youtube.com/embed/${VIDEO_ID}" title="${course.title}" allowfullscreen></iframe>
+                </div>
+                <p class="video-label">Placeholder-video — byttes ut med ekte modulinnhold senere.</p>
+                ${renderQuiz(course)}
+              </div>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    async function loadCourses() {
+      const statusEl = document.getElementById("status");
+      try {
+        const response = await fetch(`${API_BASE}/api/courses`);
+        if (!response.ok) {
+          statusEl.textContent = `Fikk ikke hentet moduler (status ${response.status}).`;
+          return;
+        }
+        const courses = await response.json();
+        window.__courses = courses;
+
+        if (courses.length === 0) {
+          statusEl.textContent = "Ingen moduler er lagt inn ennå.";
+          return;
+        }
+
+        renderProgressSummary(courses);
+        renderModules(courses);
+
+      } catch (err) {
+        statusEl.textContent = "Fikk ikke kontakt med serveren. Kjører den?";
+        console.error(err);
+      }
+    }
+
+    loadCourses();
+  </script>
+</body>
+</html>
