@@ -1,4 +1,6 @@
+
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 using Infrastructure;
 using System.Security.Cryptography;
@@ -29,7 +31,27 @@ public class AuthController : BaseController
         return Ok(new { student.Name, student.AccessCode });
     }
 
+
+    // DELETE student 
+   [HttpDelete("students/{accessCode}")]
+public async Task<ActionResult> DeleteStudent(string accessCode)
+{
+    var student = await _context.Students
+        .FirstOrDefaultAsync(s => s.AccessCode == accessCode);
+
+    if (student == null)
+    {
+        return NotFound(new { message = "Fant ingen student med den koden." });
+    }
+
+    _context.Students.Remove(student);
+    await _context.SaveChangesAsync();
+
+    return NoContent();
+}
+
     [HttpPost("login")]
+    [EnableRateLimiting("LoginPolicy")]
     public async Task<ActionResult> Login(LoginRequest request)
     {
         var student = await _context.Students
@@ -43,8 +65,6 @@ public class AuthController : BaseController
         return Ok(new { message = "Innlogget!", name = student.Name });
     }
 
-    // Tegnsettet utelater forvirrende tegn (0/O, 1/I/L) slik at studenter
-    // ikke mistolker koden når de skriver den av fra papir eller SMS.
     private const string SafeChars = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
 
     private static string GenerateAccessCode()
@@ -57,8 +77,6 @@ public class AuthController : BaseController
         return new string(buffer);
     }
 
-    // Sjekker (i det usannsynlige tilfellet) at koden faktisk er unik i databasen
-    // før den tas i bruk, i stedet for å bare stole blindt på tilfeldigheten.
     private async Task<string> GenerateUniqueAccessCode()
     {
         string code;

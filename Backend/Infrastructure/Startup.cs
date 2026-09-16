@@ -1,11 +1,15 @@
+// Startup.cs
+
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using System.Threading.RateLimiting;
 
 namespace Infrastructure;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -31,14 +35,32 @@ public class Startup
         services.AddControllers()
             .AddApplicationPart(EntryAssembly);
 
-        // NYTT: åpner opp for at nettsider på en annen port/origin
-        // (f.eks. login.html på localhost:5500) får lov til å kalle dette API-et.
+        // Stram inn CORS til kun de adressene som faktisk skal få snakke med API-et.
+        // Legg til flere localhost-porter her etter behov mens du utvikler.
         services.AddCors(options =>
         {
-            options.AddPolicy("AllowAll", policy =>
+            options.AddPolicy("AllowFrontend", policy =>
             {
-                policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                policy.WithOrigins(
+                        "https://klinikkopplaering.no",
+                        "http://localhost:5500",
+                        "http://localhost:8000"
+                      )
+                      .AllowAnyHeader()
+                      .AllowAnyMethod();
             });
+        });
+
+        // Maks 5 innloggingsforsøk per minutt per klient, resten avvises automatisk.
+        services.AddRateLimiter(options =>
+        {
+            options.AddFixedWindowLimiter("LoginPolicy", opt =>
+            {
+                opt.PermitLimit = 5;
+                opt.Window = TimeSpan.FromMinutes(1);
+                opt.QueueLimit = 0;
+            });
+            options.RejectionStatusCode = 429;
         });
     }
 
@@ -48,11 +70,17 @@ public class Startup
         {
             app.UseDeveloperExceptionPage();
         }
+        else
+        {
+            // Tving HTTPS kun utenfor lokal utvikling, slik at localhost-testing
+            // med vanlig http fortsatt fungerer som i dag.
+            app.UseHttpsRedirection();
+        }
 
         app.UseRouting();
 
-        // NYTT: må stå her, EFTER UseRouting men FØR UseAuthorization/MapControllers
-        app.UseCors("AllowAll");
+        app.UseCors("AllowFrontend");
+        app.UseRateLimiter();
 
         app.UseAuthorization();
 
