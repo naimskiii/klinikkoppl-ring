@@ -1,14 +1,14 @@
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 
-COPY Entity/Entity.csproj Entity/
-COPY Infrastructure/Infrastructure.csproj Infrastructure/
-COPY API/API.csproj API/
+COPY Backend/Entity/Entity.csproj Entity/
+COPY Backend/Infrastructure/Infrastructure.csproj Infrastructure/
+COPY Backend/API/API.csproj API/
 RUN dotnet restore API/API.csproj
 
-COPY Entity/ Entity/
-COPY Infrastructure/ Infrastructure/
-COPY API/ API/
+COPY Backend/Entity/ Entity/
+COPY Backend/Infrastructure/ Infrastructure/
+COPY Backend/API/ API/
 RUN dotnet publish API/API.csproj -c Release -o /app/publish
 
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS runtime
