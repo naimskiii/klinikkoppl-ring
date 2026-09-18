@@ -1,5 +1,3 @@
-// Startup.cs
-
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using System.Threading.RateLimiting;
@@ -35,14 +33,19 @@ public class Startup
         services.AddControllers()
             .AddApplicationPart(EntryAssembly);
 
-        // Stram inn CORS til kun de adressene som faktisk skal få snakke med API-et.
-        // Legg til flere localhost-porter her etter behov mens du utvikler.
+        // CORS: kun disse adressene får lov til å kalle API-et fra nettleseren.
+        // Merk: klinikkopplæring.no bruker "æ", som nettlesere omgjør til
+        // punycode (xn--klinikkopplring-7lb.no) i Origin-headeren — begge
+        // former må derfor stå på lista.
         services.AddCors(options =>
         {
             options.AddPolicy("AllowFrontend", policy =>
             {
                 policy.WithOrigins(
                         "https://klinikkopplaering.no",
+                        "https://www.klinikkopplaering.no",
+                        "https://xn--klinikkopplring-7lb.no",
+                        "https://www.xn--klinikkopplring-7lb.no",
                         "http://localhost:5500",
                         "http://localhost:8000"
                       )
@@ -51,7 +54,7 @@ public class Startup
             });
         });
 
-        // Maks 5 innloggingsforsøk per minutt per klient, resten avvises automatisk.
+        // Maks 5 innloggingsforsøk per minutt per klient.
         services.AddRateLimiter(options =>
         {
             options.AddFixedWindowLimiter("LoginPolicy", opt =>
@@ -72,8 +75,6 @@ public class Startup
         }
         else
         {
-            // Tving HTTPS kun utenfor lokal utvikling, slik at localhost-testing
-            // med vanlig http fortsatt fungerer som i dag.
             app.UseHttpsRedirection();
         }
 
